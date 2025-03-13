@@ -13,21 +13,20 @@
  * https://refactoring.guru/es/design-patterns/builder
  */
 
-import { COLORS } from '../helpers/colors.ts';
-
 class Computer {
-  public cpu: string = 'cpu - not defined';
-  public ram: string = 'ram - not defined';
-  public storage: string = 'storage - not defined';
+  public cpu: string = "cpu - not defined";
+  public ram: string = "ram - not defined";
+  public storage: string = "storage - not defined";
   public gpu?: string;
 
   displayConfiguration() {
-    console.log(`Configuración de la computadora
-      CPU: ${this.cpu}  
-      RAM: ${this.ram}  
-      Almacenamiento: ${this.storage}  
-      GPU: ${this.gpu ?? 'No tiene GPU'}  
-      `);
+    console.log(
+      `Computadora: 
+      CPU: ${this.cpu} 
+      RAM: ${this.ram}
+      Storage: ${this.storage}
+      GPU: ${this.gpu ?? "Sin GPU"}`
+    );
   }
 }
 
@@ -38,22 +37,21 @@ class ComputerBuilder {
     this.computer = new Computer();
   }
 
-  setCPU(cpu: string): ComputerBuilder {
+  setCPU(cpu: string) {
     this.computer.cpu = cpu;
     return this;
   }
 
-  setRAM(ram: string): ComputerBuilder {
+  setRAM(ram: string) {
     this.computer.ram = ram;
     return this;
   }
 
-  setStorage(storage: string): ComputerBuilder {
+  setSTORAGE(storage: string) {
     this.computer.storage = storage;
     return this;
   }
-
-  setGPU(gpu: string): ComputerBuilder {
+  setGPU(gpu: string) {
     this.computer.gpu = gpu;
     return this;
   }
@@ -64,23 +62,14 @@ class ComputerBuilder {
 }
 
 function main() {
-  const basicComputer: Computer = new ComputerBuilder()
-    .setCPU('Intel Core 2 Dúo')
-    .setRAM('4GB')
-    .setStorage('256GB')
+  const gamingComputer: Computer = new ComputerBuilder()
+    .setCPU("Ryzen 7 3.8ghz")
+    .setRAM("16gb")
+    .setSTORAGE("1TB")
+    .setGPU("RTX 4080 Ti")
     .build();
 
-  console.log('%cComputadora básica:', COLORS.blue);
-  basicComputer.displayConfiguration();
-
-  const gamingComputer = new ComputerBuilder()
-    .setCPU('Intel i9')
-    .setRAM('64GB')
-    .setStorage('1TB M2')
-    .setGPU('Nvidia RTX 5090')
-    .build();
-
-  console.log('%c\nComputadora gamer\n', COLORS.cyan);
+  console.log("Computadora Gaming");
   gamingComputer.displayConfiguration();
 }
 
