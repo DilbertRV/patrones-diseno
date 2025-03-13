@@ -13,54 +13,50 @@
  *
  */
 
-import { COLORS } from '../helpers/colors.ts';
+import { COLORS } from "../helpers/colors.ts";
 
-interface Hamburger {
+interface Hamburguer {
   prepare(): void;
 }
 
-class ChickenHamburger implements Hamburger {
+class ChickenHamburguer implements Hamburguer {
   prepare(): void {
-    console.log('Preparando una hamburguesa de %cpollo', COLORS.yellow);
+    console.log("Preparando una Hamburguesa de %cPollo", COLORS.pink);
   }
 }
-
-class BeefHamburger implements Hamburger {
+class BeefHamburguer implements Hamburguer {
   prepare(): void {
-    console.log('Preparando una hamburguesa de %cres', COLORS.brown);
+    console.log("Preparando una Hamburguesa de %cRes", COLORS.orange);
   }
 }
-
-class BeanHamburger implements Hamburger {
+class BeanHamburguer implements Hamburguer {
   prepare(): void {
-    console.log('Preparando una hamburguesa de %cfrijol', COLORS.orange);
+    console.log("Preparando una Hamburguesa de %cFrijol", COLORS.blue);
   }
 }
 
 abstract class Restaurant {
-  protected abstract createHamburger(): Hamburger;
+  protected abstract createHamburguer(): Hamburguer;
 
-  orderHamburger(): void {
-    const hamburger = this.createHamburger();
-    hamburger.prepare();
+  orderHamburguer(): void {
+    const hamburguer = this.createHamburguer();
+    hamburguer.prepare();
   }
 }
 
 class ChickenRestaurant extends Restaurant {
-  override createHamburger(): Hamburger {
-    return new ChickenHamburger();
+  override createHamburguer(): Hamburguer {
+    return new ChickenHamburguer();
   }
 }
-
 class BeefRestaurant extends Restaurant {
-  override createHamburger(): Hamburger {
-    return new BeefHamburger();
+  override createHamburguer(): Hamburguer {
+    return new BeefHamburguer();
   }
 }
-
 class BeanRestaurant extends Restaurant {
-  override createHamburger(): Hamburger {
-    return new BeanHamburger();
+  override createHamburguer(): Hamburguer {
+    return new BeanHamburguer();
   }
 }
 
@@ -68,27 +64,26 @@ function main() {
   let restaurant: Restaurant;
 
   const burgerType = prompt(
-    '¿Qué tipo de hamburguesa quieres? ( chicken/beef/bean )'
+    "¿Qué tipo de Hamburguesa quieres? (chicken / beef / bean)"
   );
 
   switch (burgerType) {
-    case 'chicken':
+    case "chicken":
       restaurant = new ChickenRestaurant();
       break;
 
-    case 'beef':
+    case "beef":
       restaurant = new BeefRestaurant();
       break;
 
-    case 'bean':
+    case "bean":
       restaurant = new BeanRestaurant();
       break;
 
     default:
-      throw new Error('Opción no válida');
+      throw new Error("Opción no válida");
   }
-
-  restaurant.orderHamburger();
+  restaurant.orderHamburguer();
 }
 
 main();
